@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smart-Home</title>
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../public/css/app.css" type="text/css">
+</head>
+<body onload="init();">
+    <header><h1>Smart-Home</h1></header>
+    <section id="controll">
+
+        <!-- Allgemein -->
+        <div class="card controll-room room-general">
+            <div class="card-header"><h3>Allgemein</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    
+                    <div class="controll-group">
+                        <button type="button" onclick="onSubmit('bell', 'on')" class="btn btn-lg btn-bright btn-danger">Klingel</button>
+                        <button type="button" class="btn btn-lg btn-bright btn-success" data-toggle="modal" data-target=".modal-tts">Ansagen</button>
+                        <button type="button" class="btn btn-lg btn-bright btn-secondary" data-toggle="modal" data-target=".bd-example-modal-xl">Infos</button>
+                    </div>
+                    
+                    <div class="modal fade modal-tts" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle"><h3>Ansagen</h3></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                              
+                            <div class="modal-body">
+                                <textarea id="tts-input-field" style="width: 100% !important;" placeholder="Anzusagenden Text hier eingeben." rows="10"></textarea>
+                                <button onclick="tts()" class="btn btn-lg btn-bright btn-success">Ansage abspielen</button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle"><h3>Infos und Statistiken</h3></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              
+                              <div class="modal-body">
+                                <h4>Statistiken</h4>
+                                <ul>
+                                    <li><b>5</b> Knöpfe gedrückt.</li>
+                                    <li><b>2</b> verschiedene Geräte.</li>
+                                    <li><b>1</b> mal Motor gedreht.</li>
+                                    <li><b>9</b> mal geklingelt.</li>
+                                    <li><b>2</b> Geräte gekickt.</li>
+                                </ul>
+                                <h4>Infos</h4>
+                                <p>Dieses Smart-Home Modell ist ein Projekt der Programmier AG des Teletta-Groß-Gymnasiums.<br>Es wurde im August 2019 gestartet und seitdem kontinuirlich verbessert.<br>Die Soft- und Hardware wurde von Fabian R. und Sönke K. entwickelt.</p>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Küche -->
+        <div class="card controll-room">
+            <div class="card-header"><h3>Küche</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    <div class="controll-group">
+                        <h4>Tisch<h4>
+                          <label class="switch">
+                            <input type="checkbox" class="toggler" id="gpio-manual//5//on//k-tisch-licht" checked>
+                            <span class="slider round"></span>
+                        </label>    
+                    </div>
+                    
+                    <div class="controll-group">
+                        <h4>Ofen</h4>
+                         <label class="switch">
+                            <input type="checkbox" class="toggler" id="gpio-manual//3//on//k-ofen" checked>
+                            <span class="slider round"></span>
+                        </label>  
+                    </div>
+
+                    <div class="controll-group">
+                        <h4>Deckenlampe</h4>
+                       <label class="switch">
+                            <input type="checkbox" class="toggler" id="gpio-manual//19//on//k-deckenlampe" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Wohnzimmer -->
+        <div class="card controll-room">
+            <div class="card-header"><h3>Wohnzimmer</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    <h4>Deckenlampe</h4>
+                    <label class="switch">
+                        <input type="checkbox" class="toggler" id="gpio-manual//6//on//wz-deckenlampe" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+          </div>
+
+        <!-- Schlafzimmer -->
+        <div class="card controll-room">
+            <div class="card-header"><h3>Schlafzimmer</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    <h4>Deckenlampe</h4>
+                    <label class="switch">
+                        <input type="checkbox" class="toggler" id="gpio-manual//2//on//sza-deckenlampe" checked>
+                        <span class="slider round"></span>
+                    </label>  
+                </div>
+            </div>
+          </div>
+
+
+        <!-- Badezimmer -->
+        <div class="card controll-room">
+            <div class="card-header"><h3>Badezimmer</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    <h4>Spiegel</h4>
+                    <label class="switch">
+                        <input type="checkbox" class="toggler" id="gpio-manual//13//on//szb-spiegel-lampe" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+          </div>
+
+        <!-- Kinderzimmer -->
+        <div class="card controll-room">
+            <div class="card-header"><h3>Kinderzimmer</h3></div>
+            <div class="card-body">
+                <div class="controll-group">
+                    <h4>Deckenlampe</h4>
+                    <label class="switch">
+                        <input type="checkbox" class="toggler" id="gpio-manual//26//on//kz-deckenlampe" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+          </div>
+
+    </section>
+    <script src="../public/js/jquery.min.js" type="text/javascript"></script>
+    <script src="../public/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../public/js/main.js" type="text/javascript"></script>
+</body>
+</html>
